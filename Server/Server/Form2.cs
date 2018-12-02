@@ -27,13 +27,20 @@ namespace Server
 
         public Form2(int Port)
         {
-            port = Port;
-            client = new TcpClient();
-            Listening = new Thread(StartListening);
-            GetImage = new Thread(ReceiveImage);
-            InitializeComponent();
+            try
+            {
+                port = Port;
+                client = new TcpClient();
+                Listening = new Thread(StartListening);
+                GetImage = new Thread(ReceiveImage);
+                InitializeComponent();
+            }catch(Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
 
+        //Listen for incomeing signals on the selected port
         private void StartListening()
         {
             while (!client.Connected)
@@ -44,6 +51,7 @@ namespace Server
             GetImage.Start();
         }
 
+        //Stop listening for incomeing signals on the selected port
         private void StopListening()
         {
             server.Stop();
@@ -52,13 +60,26 @@ namespace Server
             if (GetImage.IsAlive) GetImage.Abort();
         }
 
+        //Receve the data from the Client Computer
         private void ReceiveImage()
         {
             BinaryFormatter binformatter = new BinaryFormatter();
             while (client.Connected)
             {
-                mainstream = client.GetStream();
-                pictureBox1.Image = (Image)binformatter.Deserialize(mainstream);
+                try
+                {
+                    mainstream = client.GetStream();
+                    pictureBox1.Image = (Image)binformatter.Deserialize(mainstream);
+
+                    if (!client.Connected)
+                    {
+                        MessageBox.Show("The Connection has ended!");
+                        this.Close();
+                    }
+                }catch(Exception x)
+                {
+                    MessageBox.Show(x.Message);
+                }
             }
         }
 
@@ -73,6 +94,13 @@ namespace Server
         {
             base.OnFormClosing(e);
             StopListening();
+        }
+
+        private void stopListeningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StopListening();
+            MessageBox.Show("Connection Terminated. Application will now exit.");
+            Application.Exit();
         }
     }
 }

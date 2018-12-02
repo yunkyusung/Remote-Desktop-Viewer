@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Server
 {
@@ -19,6 +20,7 @@ namespace Server
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Start Form 2, the form that the Client Desktop appears in.
             new Form2(int.Parse(textBox1.Text)).Show();
         }
 
@@ -26,5 +28,37 @@ namespace Server
         {
             Application.Exit();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        #region Form Border Controls
+        /// <summary>
+        /// This is the section that controls closing, moving, etc. of the main form.
+        /// </summary>
+        Point lastPoint;
+        public string size;
+        //Minimize the form
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void TopBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void TopBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+        #endregion
     }
 }

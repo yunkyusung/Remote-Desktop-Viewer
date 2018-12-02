@@ -19,6 +19,7 @@ namespace Client
         private NetworkStream mainStream;
         private int portNumber;
 
+        //Grab the Desktop Image of the Client Computer
         private static Image GrabDesktop()
         {
             Rectangle bounds = Screen.PrimaryScreen.Bounds;
@@ -28,18 +29,28 @@ namespace Client
             return screenshot;
         }
 
+        //Send the Desktop Image to the Server
         private void SendDesktopImage()
         {
-            BinaryFormatter binFormatter = new BinaryFormatter();
-            mainStream = client.GetStream();
-            binFormatter.Serialize(mainStream, GrabDesktop());
+            try
+            {
+                BinaryFormatter binFormatter = new BinaryFormatter();
+                mainStream = client.GetStream();
+                binFormatter.Serialize(mainStream, GrabDesktop());
+            }catch(Exception x)
+            {
+                timer1.Stop();
+                MessageBox.Show(x.Message);
+            }
         }
 
+        //Initialize the form
         public Form1()
         {
             InitializeComponent();
         }
 
+        //Button that starts the connection to the client
         private void btnConnect_Click(object sender, EventArgs e)
         {
             portNumber = int.Parse(textBox2.Text);
@@ -54,6 +65,7 @@ namespace Client
             }
         }
 
+        //Button that starts and stops screen sharing
         private void btnShare_Click(object sender, EventArgs e)
         {
             if (btnShare.Text.StartsWith("Share"))
@@ -68,14 +80,46 @@ namespace Client
             }
         }
 
+        //Puts the Client DEstop image in the Viewer Form (From 2)
         private void timer1_Tick(object sender, EventArgs e)
         {
             SendDesktopImage();
         }
 
+        #region
+        /// <summary>
+        /// The controls that control the form movement, minimizeing, Closing
+        /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        Point lastPoint;
+        public string size;
+        private void TopBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void TopBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+        #endregion
     }
 }
