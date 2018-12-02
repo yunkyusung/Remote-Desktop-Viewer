@@ -21,11 +21,11 @@ AdminQuietInstCmd=%AdminQuietInstCmd%
 UserQuietInstCmd=%UserQuietInstCmd%
 SourceFiles=SourceFiles
 [Strings]
-InstallPrompt=You are about to extract RemoteDesktopViewer(RDV) v1.0.0
+InstallPrompt=You are about to extract Remote Desktop Viewer (RDV) v1.0.0
 DisplayLicense=C:\Users\The Boys\Documents\GitHub\Remote-Desktop-Viewer\LICENSE.txt
-FinishMessage=RDV has been extracted
+FinishMessage=RDV was extracted
 TargetName=C:\Users\The Boys\Documents\GitHub\Remote-Desktop-Viewer\RDV_v1.0.0_Setup.exe
-FriendlyName=RemoteDesktopViewr(RDV)_v1.0.0_Setup
+FriendlyName=Remote Desktop Viewer (RDV) v1.0.0
 AppLaunched=
 PostInstallCmd=
 AdminQuietInstCmd=
