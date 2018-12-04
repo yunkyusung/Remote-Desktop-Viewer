@@ -121,5 +121,33 @@ namespace Client
             }
         }
         #endregion
+
+        int counter = 0;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (counter==0)
+            {
+                this.BackColor = Color.FromArgb(242, 255, 240);
+                this.ForeColor = Color.Black;
+                textBox1.BackColor = Color.FromArgb(242, 255, 240);
+                textBox2.BackColor = Color.FromArgb(242, 255, 240);
+                textBox1.ForeColor = Color.Black;
+                textBox2.ForeColor = Color.Black;
+                counter = 1;
+                button2.Text = "Dark Mode";
+            }
+            else if (counter==1)
+            {
+                this.BackColor = Color.FromArgb(63, 63, 70);
+                this.ForeColor = Color.White;
+                textBox1.BackColor = Color.FromArgb(63, 63, 70);
+                textBox2.BackColor = Color.FromArgb(63, 63, 70);
+                textBox1.ForeColor = Color.White;
+                textBox2.ForeColor = Color.White;
+                counter = 0;
+                button2.Text = "Light Mode";
+            }
+        }
     }
 }

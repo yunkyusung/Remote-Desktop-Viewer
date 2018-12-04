@@ -60,5 +60,28 @@ namespace Server
             }
         }
         #endregion
+
+        int counter = 0;
+        private void button5_Click(object sender, EventArgs e)
+        {  
+            if (counter == 0)
+            {
+                this.BackColor = Color.FromArgb(242, 255, 240);
+                this.ForeColor = Color.Black;
+                textBox1.BackColor = Color.FromArgb(242, 255, 240);
+                textBox1.ForeColor = Color.Black;
+                counter = 1;
+                button5.Text = "Dark Mode";
+            }
+            else if (counter == 1)
+            {
+                this.BackColor = Color.FromArgb(63, 63, 70);
+                this.ForeColor = Color.White;
+                textBox1.BackColor = Color.FromArgb(63, 63, 70);
+                textBox1.ForeColor = Color.White;
+                counter = 0;
+                button5.Text = "Light Mode";
+            }
+        }
     }
 }
