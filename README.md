@@ -1,5 +1,7 @@
 # Remote-Desktop-Viewer
 A simple C# .NET tool that allows th user to view to screen of another computer.
+
+_Current Version: v1.1.0 as of 12/4/2018_
 ## The Server Program
 The server program is the program you want to run on YOUR computer, not the one you want to connect to. When the windows pops up, 
 enter the port you would like to listen on, ex: 1717. Then click listen. A window will pop up, it will have a grey background until
