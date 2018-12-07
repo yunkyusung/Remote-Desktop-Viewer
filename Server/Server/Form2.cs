@@ -43,12 +43,18 @@ namespace Server
         //Listen for incomeing signals on the selected port
         private void StartListening()
         {
-            while (!client.Connected)
+            try
             {
-                server.Start();
-                client = server.AcceptTcpClient();
+                while (!client.Connected)
+                {
+                    server.Start();
+                    client = server.AcceptTcpClient();
+                }
+                GetImage.Start();
+            }catch(Exception x)
+            {
+                MessageBox.Show(x.Message);
             }
-            GetImage.Start();
         }
 
         //Stop listening for incomeing signals on the selected port
