@@ -8,6 +8,7 @@ enter the port you would like to listen on, ex: 1717. Then click listen. A windo
 you connect from the client computer. After that, then the window will be displaying the client computer's screen.
 
 ![Server](/img/RDV-S-DM.png)
+![Server](/img/RDV-S-VW.png)
 
 ## The Client Program
 The client is the program that you run on the computer you want to
