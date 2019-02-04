@@ -66,9 +66,9 @@ namespace Server
         {  
             if (counter == 0)
             {
-                this.BackColor = Color.FromArgb(242, 255, 240);
+                this.BackColor = Color.FromArgb(207, 216, 220);
                 this.ForeColor = Color.Black;
-                textBox1.BackColor = Color.FromArgb(242, 255, 240);
+                textBox1.BackColor = Color.FromArgb(207, 216, 220);
                 textBox1.ForeColor = Color.Black;
                 counter = 1;
                 button5.Text = "Dark Mode";
